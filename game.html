@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mini Games | LearnLab</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header id="site-header"></header>
+
+    <main class="page-shell game-page">
+      <div class="game-header">
+        <p class="eyebrow">Mini Games</p>
+        <h1>Game Zone</h1>
+        <p>Practice logic, memory, and quick decision-making with two different challenges.</p>
+      </div>
+
+      <div class="game-layout">
+        <section class="game-card guess-game">
+          <h2>Guess the Number</h2>
+
+          <div class="game-scoreboard">
+            <div class="score-box">
+              <span>Round</span>
+              <strong id="round">1</strong>
+            </div>
+            <div class="score-box">
+              <span>Score</span>
+              <strong id="score">0</strong>
+            </div>
+            <div class="score-box">
+              <span>Left</span>
+              <strong id="attempts">5</strong>
+            </div>
+          </div>
+
+          <form id="guess-form" class="guess-form">
+            <input
+              type="number"
+              id="guess-input"
+              min="1"
+              max="20"
+              placeholder="Enter a number from 1 to 20"
+              required
+            />
+            <button type="submit">Guess</button>
+          </form>
+
+          <div id="guess-status" class="game-status">Start by entering a number.</div>
+        </section>
+
+        <section class="game-card memory-game">
+          <h2>Memory Match</h2>
+
+          <div class="memory-controls">
+            <div class="memory-stat">
+              <span>Moves</span>
+              <strong id="memory-moves">0</strong>
+            </div>
+            <div class="memory-stat">
+              <span>Matches</span>
+              <strong id="memory-matches">0 / 8</strong>
+            </div>
+            <div class="memory-stat">
+              <span>Best</span>
+              <strong id="memory-best">0</strong>
+            </div>
+          </div>
+
+          <div id="memory-board" class="memory-board" aria-label="Memory match board"></div>
+
+          <div class="memory-actions">
+            <button id="memory-reset" class="secondary-button" type="button">New Round</button>
+          </div>
+
+          <div id="memory-status" class="game-status">Find all matching pairs.</div>
+        </section>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      © 2026 LearnLab · Interactive practice
+    </footer>
+
+    <script src="nav.js"></script>
+    <script>
+      // ------------------------------
+      // Guess the Number game
+      // ------------------------------
+      const guessForm = document.getElementById("guess-form");
+      const guessInput = document.getElementById("guess-input");
+      const guessStatus = document.getElementById("guess-status");
+      const attemptsEl = document.getElementById("attempts");
+      const scoreEl = document.getElementById("score");
+      const roundEl = document.getElementById("round");
+
+      let secretNumber = Math.floor(Math.random() * 20) + 1;
+      let attemptsLeft = 5;
+      let score = 0;
+      let round = 1;
+
+      function updateGuessStats() {
+        attemptsEl.textContent = attemptsLeft;
+        scoreEl.textContent = score;
+        roundEl.textContent = round;
+      }
+
+      function resetGuessRound() {
+        secretNumber = Math.floor(Math.random() * 20) + 1;
+        attemptsLeft = 5;
+        guessInput.value = "";
+        guessInput.focus();
+        updateGuessStats();
+        guessStatus.textContent = "A new round has started. Enter a number to continue.";
+        guessStatus.classList.remove("error");
+      }
+
+      guessForm.addEventListener("submit", (event) => {
+        event.preventDefault();
+
+        if (attemptsLeft <= 0) {
+          guessStatus.textContent = "This round is over. Please start a new one.";
+          guessStatus.classList.add("error");
+          return;
+        }
+
+        const guess = Number(guessInput.value);
+
+        if (!Number.isInteger(guess) || guess < 1 || guess > 20) {
+          guessStatus.textContent = "Please enter an integer between 1 and 20.";
+          guessStatus.classList.add("error");
+          return;
+        }
+
+        attemptsLeft -= 1;
+        updateGuessStats();
+
+        if (guess === secretNumber) {
+          score += 10;
+          guessStatus.textContent = `Correct! The answer was ${secretNumber}. You won this round.`;
+          guessStatus.classList.remove("error");
+          updateGuessStats();
+
+          setTimeout(() => {
+            round += 1;
+            resetGuessRound();
+          }, 1500);
+          return;
+        }
+
+        if (attemptsLeft === 0) {
+          guessStatus.textContent = `Game over. The correct answer was ${secretNumber}.`;
+          guessStatus.classList.add("error");
+          setTimeout(() => {
+            round += 1;
+            resetGuessRound();
+            updateGuessStats();
+          }, 1500);
+          return;
+        }
+
+        if (guess < secretNumber) {
+          guessStatus.textContent = "Too low. Try again.";
+        } else {
+          guessStatus.textContent = "Too high. Try again.";
+        }
+
+        guessStatus.classList.remove("error");
+        guessInput.value = "";
+        guessInput.focus();
+      });
+
+      updateGuessStats();
+
+      // ------------------------------
+      // Memory Match game
+      // ------------------------------
+      const memoryBoard = document.getElementById("memory-board");
+      const memoryMovesEl = document.getElementById("memory-moves");
+      const memoryMatchesEl = document.getElementById("memory-matches");
+      const memoryBestEl = document.getElementById("memory-best");
+      const memoryStatus = document.getElementById("memory-status");
+      const memoryResetButton = document.getElementById("memory-reset");
+
+      const baseSymbols = ["🎯", "🚀", "🌟", "💡", "🎨", "📚", "✅", "🔥"];
+      let memoryDeck = [];
+      let memoryFlipped = [];
+      let memoryLocked = false;
+      let memoryMoves = 0;
+      let memoryMatches = 0;
+      let memoryBest = Number(localStorage.getItem("learnlab-memory-best")) || 0;
+
+      function shuffle(items) {
+        const copy = [...items];
+        for (let i = copy.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [copy[i], copy[j]] = [copy[j], copy[i]];
+        }
+        return copy;
+      }
+
+      function updateMemoryStats() {
+        memoryMovesEl.textContent = memoryMoves;
+        memoryMatchesEl.textContent = `${memoryMatches} / ${baseSymbols.length}`;
+        memoryBestEl.textContent = memoryBest;
+      }
+
+      function buildMemoryBoard() {
+        const symbols = shuffle([...baseSymbols, ...baseSymbols]);
+        memoryDeck = symbols.map((emoji, index) => ({
+          id: index,
+          emoji,
+          matched: false,
+          revealed: false
+        }));
+        memoryFlipped = [];
+        memoryLocked = false;
+        memoryMoves = 0;
+        memoryMatches = 0;
+        memoryStatus.textContent = "Find all matching pairs.";
+        memoryStatus.classList.remove("error");
+        renderMemoryBoard();
+        updateMemoryStats();
+      }
+
+      function renderMemoryBoard() {
+        memoryBoard.innerHTML = memoryDeck
+          .map(
+            (card, index) => `
+              <button
+                class="memory-card ${card.revealed || card.matched ? "is-visible" : ""} ${card.matched ? "is-matched" : ""}"
+                type="button"
+                data-index="${index}"
+                aria-label="Memory card ${index + 1}"
+              >
+                <span class="memory-card-inner">${card.revealed || card.matched ? card.emoji : "?"}</span>
+              </button>
+            `
+          )
+          .join("");
+
+        memoryBoard.querySelectorAll(".memory-card").forEach((button) => {
+          button.addEventListener("click", () => {
+            const index = Number(button.dataset.index);
+            handleMemoryClick(index);
+          });
+        });
+      }
+
+      function handleMemoryClick(index) {
+        const card = memoryDeck[index];
+
+        if (memoryLocked || card.matched || card.revealed) return;
+        card.revealed = true;
+        memoryFlipped.push(index);
+
+        renderMemoryBoard();
+
+        if (memoryFlipped.length === 2) {
+          memoryMoves += 1;
+          updateMemoryStats();
+
+          const [firstIndex, secondIndex] = memoryFlipped;
+          const firstCard = memoryDeck[firstIndex];
+          const secondCard = memoryDeck[secondIndex];
+
+          if (firstCard.emoji === secondCard.emoji) {
+            firstCard.matched = true;
+            secondCard.matched = true;
+            memoryMatches += 1;
+            memoryFlipped = [];
+            memoryStatus.textContent = "Nice match!";
+            updateMemoryStats();
+
+            if (memoryMatches === baseSymbols.length) {
+              memoryBest = Math.min(memoryBest === 0 ? memoryMoves : memoryBest, memoryMoves);
+              localStorage.setItem("learnlab-memory-best", String(memoryBest));
+              updateMemoryStats();
+              memoryStatus.textContent = `You won! Total moves: ${memoryMoves}.`;
+              memoryStatus.classList.remove("error");
+            }
+            renderMemoryBoard();
+            return;
+          }
+
+          memoryLocked = true;
+          memoryStatus.textContent = "Not a match, try again.";
+          memoryStatus.classList.add("error");
+
+          setTimeout(() => {
+            firstCard.revealed = false;
+            secondCard.revealed = false;
+            memoryFlipped = [];
+            memoryLocked = false;
+            renderMemoryBoard();
+            memoryStatus.textContent = "Keep going!";
+            memoryStatus.classList.remove("error");
+          }, 700);
+        }
+      }
+
+      memoryResetButton.addEventListener("click", () => {
+        buildMemoryBoard();
+      });
+
+      buildMemoryBoard();
+    </script>
+  </body>
+</html>

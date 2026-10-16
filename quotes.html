@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Favorite Quotes | LearnLab</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header id="site-header"></header>
+
+    <main class="page-shell quote-page">
+      <div class="quote-header">
+        <p class="eyebrow">Inspiration</p>
+        <h1>My favorite quotes</h1>
+        <p>Motivation, discipline, and courage are often built one sentence at a time.</p>
+      </div>
+
+      <div id="quote-grid" class="quote-grid"></div>
+    </main>
+
+    <footer class="site-footer">
+      © 2026 LearnLab · Words that move us
+    </footer>
+
+    <script src="nav.js"></script>
+    <script>
+      const quotes = [
+        { text: "It does not matter how slowly you go as long as you do not stop.", author: "Confucius" },
+        { text: "Stay hungry, stay foolish.", author: "Steve Jobs" },
+        { text: "Success is not final, failure is not fatal: it is the courage to continue that counts.", author: "Winston Churchill" },
+        { text: "Genius is one percent inspiration and ninety-nine percent perspiration.", author: "Thomas Edison" },
+        { text: "That which does not kill us makes us stronger.", author: "Friedrich Nietzsche" },
+        { text: "The only way to do great work is to love what you do.", author: "Steve Jobs" },
+        { text: "It is not our abilities that show what we truly are. It is our choices.", author: "J.K. Rowling" },
+        { text: "Do what is right, not what is easy.", author: "Roy T. Bennett" },
+        { text: "Live as if you were to die tomorrow. Learn as if you were to live forever.", author: "Mahatma Gandhi" },
+        { text: "Try to be a rainbow in someone's cloud.", author: "Maya Angelou" },
+        { text: "Sometimes you win, sometimes you learn.", author: "John C. Maxwell" },
+        { text: "Take what's useful, discard what is not.", author: "Bruce Lee" },
+        { text: "Failure is simply the opportunity to begin again, this time more intelligently.", author: "Henry Ford" },
+        { text: "You don't learn to walk by following rules. You learn by doing, and by falling over.", author: "Richard Branson" },
+        { text: "The future belongs to those who believe in the beauty of their dreams.", author: "Eleanor Roosevelt" },
+        { text: "We don't see things as they are, we see them as we are.", author: "Anaïs Nin" },
+        { text: "Discipline is the bridge between goals and achievement.", author: "Jim Rohn" },
+        { text: "When you reach the end of your rope, tie a knot in it and hang on.", author: "Franklin D. Roosevelt" }
+      ];
+
+      const grid = document.getElementById("quote-grid");
+
+      if (grid) {
+        grid.innerHTML = quotes
+          .map(
+            (item) => `
+              <article class="quote-card">
+                <blockquote>“${item.text}”</blockquote>
+                <footer>
+                  <cite>${item.author}</cite>
+                  <span>Inspiration</span>
+                </footer>
+              </article>
+            `
+          )
+          .join("");
+      }
+    </script>
+  </body>
+</html>

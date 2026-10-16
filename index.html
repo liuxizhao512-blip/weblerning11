@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LearnLab | Creative Learning Studio</title>
+    <link rel="icon" href="favicon-32x32.png" type="image/png" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header id="site-header"></header>
+
+    <main class="page-shell">
+      <section class="hero">
+        <div class="hero-copy">
+          <span class="eyebrow">Web Learning Studio</span>
+          <h1>Be curious. Build bravely.</h1>
+          <p>
+            This is a learning-focused front-end website centered on web design, interactive experience,
+            and creative project exploration. You can browse project ideas, read inspiring quotes,
+            play a small game, and continue building your own web work.
+          </p>
+
+          <div class="cta-group">
+            <a class="button primary" href="project.html">View Projects</a>
+            <a class="button secondary" href="quotes.html">Read Quotes</a>
+          </div>
+        </div>
+
+        <div class="hero-visual">
+          <div class="visual-card">
+            <img
+              src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1200&q=80"
+              alt="Creative workspace"
+            />
+            <div class="visual-badge">
+              <strong>12+</strong>
+              <span>creative practice ideas</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="overview">
+        <div class="section-heading">
+          <p>Project overview</p>
+          <h2>Learning goes beyond code</h2>
+        </div>
+
+        <div class="info-grid">
+          <article class="info-card">
+            <div class="icon">🎯</div>
+            <h3>Goal-oriented</h3>
+            <p>Clear structure helps learners understand front-end logic and communicate ideas better.</p>
+          </article>
+
+          <article class="info-card">
+            <div class="icon">🧠</div>
+            <h3>Thinking training</h3>
+            <p>From layout to color and interaction, each step strengthens design and product thinking.</p>
+          </article>
+
+          <article class="info-card">
+            <div class="icon">🚀</div>
+            <h3>Practice-first</h3>
+            <p>Each idea becomes a real prototype that can be tested, improved, and iterated.</p>
+          </article>
+
+          <article class="info-card">
+            <div class="icon">✨</div>
+            <h3>Continuous growth</h3>
+            <p>Use your work to collect feedback and turn inspiration into better experiences.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="featured-quote-panel">
+        <h2>Random quote</h2>
+        <blockquote id="dynamic-quote">
+          “Stay hungry, stay foolish.”
+        </blockquote>
+        <div class="author" id="dynamic-author">— Steve Jobs</div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      © 2026 LearnLab · Build with curiosity
+    </footer>
+
+    <script src="nav.js"></script>
+    <script>
+      const quotes = [
+        { text: "It does not matter how slowly you go as long as you do not stop.", author: "Confucius" },
+        { text: "Stay hungry, stay foolish.", author: "Steve Jobs" },
+        { text: "Success is not final, failure is not fatal: it is the courage to continue that counts.", author: "Winston Churchill" },
+        { text: "Genius is one percent inspiration and ninety-nine percent perspiration.", author: "Thomas Edison" },
+        { text: "The only way to do great work is to love what you do.", author: "Steve Jobs" },
+        { text: "Life is like riding a bicycle. To keep your balance, you must keep moving.", author: "Albert Einstein" },
+        { text: "Do what is right, not what is easy.", author: "Roy T. Bennett" },
+        { text: "You do not learn to walk by following rules. You learn by doing and by falling over.", author: "Richard Branson" },
+        { text: "The future belongs to those who believe in the beauty of their dreams.", author: "Eleanor Roosevelt" },
+        { text: "Discipline is the bridge between goals and achievement.", author: "Jim Rohn" }
+      ];
+
+      const quoteEl = document.getElementById("dynamic-quote");
+      const authorEl = document.getElementById("dynamic-author");
+
+      if (quoteEl && authorEl) {
+        const entry = quotes[Math.floor(Math.random() * quotes.length)];
+        quoteEl.textContent = `“${entry.text}”`;
+        authorEl.textContent = `— ${entry.author}`;
+      }
+    </script>
+  </body>
+</html>
