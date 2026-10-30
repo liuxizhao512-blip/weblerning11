@@ -31,6 +31,8 @@ document.addEventListener("DOMContentLoaded", () => {
             <a href="project.html">Projects</a>
             <a href="quotes.html">Quotes</a>
             <a href="game.html">Game</a>
+            <a href="machine.html">Machine</a>
+            <a href="about.html">About</a>
           </div>
         </nav>
       `;

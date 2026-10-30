@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Idea Machine | LearnLab</title>
+    <link rel="icon" href="favicon-32x32.png" type="image/png" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header id="site-header"></header>
+
+    <main class="page-shell machine-page">
+      <div class="machine-header">
+        <p class="eyebrow">Idea machine</p>
+        <h1>Flip the switches, build an idea</h1>
+        <p>
+          Every switch is one idea module. Turn on the ones you like and the machine will assemble
+          a project blueprint for you in real time.
+        </p>
+      </div>
+
+      <div class="machine-layout">
+        <section class="machine-card switch-panel" aria-labelledby="switch-title">
+          <div class="switch-panel-head">
+            <h2 id="switch-title">Idea modules</h2>
+            <span class="switch-counter">
+              <strong id="active-count">0</strong> / <span id="total-count">8</span> active
+            </span>
+          </div>
+
+          <div class="switch-list" id="switch-list">
+            <div class="switch-row">
+              <div class="switch-copy">
+                <span class="switch-icon">🎨</span>
+                <div>
+                  <h3>Visual identity</h3>
+                  <p>Colors, typography, and a consistent look.</p>
+                </div>
+              </div>
+              <label class="switch" for="idea-visual">
+                <input type="checkbox" id="idea-visual" data-idea="A bold visual identity" />
+                <span class="switch-track"><span class="switch-thumb"></span></span>
+                <span class="visually-hidden">Toggle visual identity</span>
+              </label>
+            </div>
+
+            <div class="switch-row">
+              <div class="switch-copy">
+                <span class="switch-icon">⚡</span>
+                <div>
+                  <h3>Micro interactions</h3>
+                  <p>Hover states, toggles, and small animations.</p>
+                </div>
+              </div>
+              <label class="switch" for="idea-motion">
+                <input type="checkbox" id="idea-motion" data-idea="Playful micro interactions" />
+                <span class="switch-track"><span class="switch-thumb"></span></span>
+                <span class="visually-hidden">Toggle micro interactions</span>
+              </label>
+            </div>
+
+            <div class="switch-row">
+              <div class="switch-copy">
+                <span class="switch-icon">📊</span>
+                <div>
+                  <h3>Live data panel</h3>
+                  <p>Numbers that update as users act.</p>
+                </div>
+              </div>
+              <label class="switch" for="idea-data">
+                <input type="checkbox" id="idea-data" data-idea="A live data panel" />
+                <span class="switch-track"><span class="switch-thumb"></span></span>
+                <span class="visually-hidden">Toggle live data panel</span>
+              </label>
+            </div>
+
+            <div class="switch-row">
+              <div class="switch-copy">
+                <span class="switch-icon">🧩</span>
+                <div>
+                  <h3>Drag and drop</h3>
+                  <p>Hands-on arrangement instead of clicking.</p>
+                </div>
+              </div>
+              <label class="switch" for="idea-drag">
+                <input type="checkbox" id="idea-drag" data-idea="Drag and drop editing" />
+                <span class="switch-track"><span class="switch-thumb"></span></span>
+                <span class="visually-hidden">Toggle drag and drop</span>
+              </label>
+            </div>
+
+            <div class="switch-row">
+              <div class="switch-copy">
+                <span class="switch-icon">🌗</span>
+                <div>
+                  <h3>Dark mode</h3>
+                  <p>Let users pick the mood of the page.</p>
+                </div>
+              </div>
+              <label class="switch" for="idea-dark">
+                <input type="checkbox" id="idea-dark" data-idea="A dark mode" />
+                <span class="switch-track"><span class="switch-thumb"></span></span>
+                <span class="visually-hidden">Toggle dark mode</span>
+              </label>
+            </div>
+
+            <div class="switch-row">
+              <div class="switch-copy">
+                <span class="switch-icon">🔊</span>
+                <div>
+                  <h3>Sound feedback</h3>
+                  <p>Tiny audio cues to confirm actions.</p>
+                </div>
+              </div>
+              <label class="switch" for="idea-sound">
+                <input type="checkbox" id="idea-sound" data-idea="Sound feedback" />
+                <span class="switch-track"><span class="switch-thumb"></span></span>
+                <span class="visually-hidden">Toggle sound feedback</span>
+              </label>
+            </div>
+
+            <div class="switch-row">
+              <div class="switch-copy">
+                <span class="switch-icon">📱</span>
+                <div>
+                  <h3>Mobile first</h3>
+                  <p>Design for the smallest screen first.</p>
+                </div>
+              </div>
+              <label class="switch" for="idea-mobile">
+                <input type="checkbox" id="idea-mobile" data-idea="A mobile-first layout" />
+                <span class="switch-track"><span class="switch-thumb"></span></span>
+                <span class="visually-hidden">Toggle mobile first</span>
+              </label>
+            </div>
+
+            <div class="switch-row">
+              <div class="switch-copy">
+                <span class="switch-icon">💾</span>
+                <div>
+                  <h3>Save to browser</h3>
+                  <p>Remember choices after a refresh.</p>
+                </div>
+              </div>
+              <label class="switch" for="idea-save">
+                <input type="checkbox" id="idea-save" data-idea="Local browser saving" />
+                <span class="switch-track"><span class="switch-thumb"></span></span>
+                <span class="visually-hidden">Toggle save to browser</span>
+              </label>
+            </div>
+          </div>
+
+          <form class="idea-form" id="idea-form">
+            <label class="idea-form-label" for="idea-input">Add your own idea module</label>
+            <div class="idea-form-row">
+              <input
+                id="idea-input"
+                name="idea"
+                type="text"
+                maxlength="60"
+                placeholder="e.g. A weekly challenge mode"
+                autocomplete="off"
+              />
+              <button type="submit">Add</button>
+            </div>
+            <p class="idea-form-hint" id="idea-hint">
+              Type an idea and press Add — it becomes a new switch you can turn on and off.
+            </p>
+          </form>
+        </section>
+
+        <aside class="machine-side">
+          <section class="machine-card blueprint-card">
+            <h2>Your blueprint</h2>
+
+            <div class="blueprint-meter">
+              <div class="blueprint-bar">
+                <span id="blueprint-fill"></span>
+              </div>
+              <span class="blueprint-label" id="blueprint-label">Empty machine</span>
+            </div>
+
+            <p class="blueprint-text" id="blueprint-text">
+              Flip at least one switch to start assembling your idea.
+            </p>
+
+            <ul class="blueprint-list" id="blueprint-list"></ul>
+
+            <div class="blueprint-actions">
+              <button class="button primary" type="button" id="randomize">Surprise me</button>
+              <button class="button secondary" type="button" id="reset-ideas">Reset</button>
+            </div>
+          </section>
+
+          <section class="machine-card tip-card">
+            <h3>How to use it</h3>
+            <p>
+              Toggle modules on and off to see the blueprint change. Your selection is saved in this
+              browser, so it will still be here after you refresh the page.
+            </p>
+          </section>
+        </aside>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      © 2026 LearnLab · Idea machine
+    </footer>
+
+    <script src="nav.js"></script>
+    <script>
+      const STORAGE_KEY = "learnlab-idea-machine";
+      const CUSTOM_KEY = "learnlab-idea-machine-custom";
+
+      const listContainer = document.getElementById("switch-list");
+      const countEl = document.getElementById("active-count");
+      const totalEl = document.getElementById("total-count");
+      const fillEl = document.getElementById("blueprint-fill");
+      const labelEl = document.getElementById("blueprint-label");
+      const textEl = document.getElementById("blueprint-text");
+      const listEl = document.getElementById("blueprint-list");
+      const randomizeBtn = document.getElementById("randomize");
+      const resetBtn = document.getElementById("reset-ideas");
+      const ideaForm = document.getElementById("idea-form");
+      const ideaInput = document.getElementById("idea-input");
+      const ideaHint = document.getElementById("idea-hint");
+
+      const levels = [
+        { max: 0, label: "Empty machine" },
+        { max: 2, label: "Spark" },
+        { max: 4, label: "Prototype" },
+        { max: 6, label: "Product" },
+        { max: 8, label: "Signature experience" }
+      ];
+
+      function getSwitches() {
+        return Array.from(listContainer.querySelectorAll("input[type='checkbox']"));
+      }
+
+      function readJSON(key, fallback) {
+        try {
+          const raw = localStorage.getItem(key);
+          return raw ? JSON.parse(raw) : fallback;
+        } catch (error) {
+          return fallback;
+        }
+      }
+
+      function writeJSON(key, value) {
+        try {
+          localStorage.setItem(key, JSON.stringify(value));
+        } catch (error) {
+          /* storage may be blocked in some browsers */
+        }
+      }
+
+      function saveState() {
+        const active = getSwitches()
+          .filter((item) => item.checked)
+          .map((item) => item.id);
+        writeJSON(STORAGE_KEY, active);
+      }
+
+      function render() {
+        const switches = getSwitches();
+        const active = switches.filter((item) => item.checked);
+        const total = switches.length || 1;
+
+        countEl.textContent = active.length;
+        totalEl.textContent = switches.length;
+        fillEl.style.width = `${(active.length / total) * 100}%`;
+
+        const level = levels.find((item) => active.length <= item.max) || levels[levels.length - 1];
+        labelEl.textContent = level.label;
+
+        listEl.innerHTML = "";
+        active.forEach((item) => {
+          const li = document.createElement("li");
+          li.textContent = item.dataset.idea;
+          listEl.appendChild(li);
+        });
+
+        if (active.length === 0) {
+          textEl.textContent = "Flip at least one switch to start assembling your idea.";
+        } else if (active.length <= 2) {
+          textEl.textContent =
+            "This is a small, focused idea. Pick two or three more modules if you want more depth.";
+        } else if (active.length <= 5) {
+          textEl.textContent =
+            "Nice balance. This blueprint already feels like a shippable prototype you can build in a weekend.";
+        } else {
+          textEl.textContent =
+            "Ambitious. Consider building it in phases so each module can be tested and polished.";
+        }
+      }
+
+      function bindSwitch(input) {
+        input.addEventListener("change", () => {
+          saveState();
+          render();
+        });
+      }
+
+      function createCustomRow(text, id) {
+        const row = document.createElement("div");
+        row.className = "switch-row is-custom";
+        row.dataset.customId = id;
+
+        const copy = document.createElement("div");
+        copy.className = "switch-copy";
+
+        const icon = document.createElement("span");
+        icon.className = "switch-icon";
+        icon.textContent = "💡";
+
+        const textWrap = document.createElement("div");
+        const title = document.createElement("h3");
+        title.textContent = text;
+        const desc = document.createElement("p");
+        desc.textContent = "Your own idea module.";
+        textWrap.append(title, desc);
+        copy.append(icon, textWrap);
+
+        const label = document.createElement("label");
+        label.className = "switch";
+        label.setAttribute("for", id);
+
+        const input = document.createElement("input");
+        input.type = "checkbox";
+        input.id = id;
+        input.dataset.idea = text;
+        input.dataset.custom = "true";
+
+        const track = document.createElement("span");
+        track.className = "switch-track";
+        const thumb = document.createElement("span");
+        thumb.className = "switch-thumb";
+        track.appendChild(thumb);
+
+        const hidden = document.createElement("span");
+        hidden.className = "visually-hidden";
+        hidden.textContent = `Toggle ${text}`;
+
+        label.append(input, track, hidden);
+
+        const removeBtn = document.createElement("button");
+        removeBtn.type = "button";
+        removeBtn.className = "switch-remove";
+        removeBtn.setAttribute("aria-label", `Remove ${text}`);
+        removeBtn.textContent = "×";
+        removeBtn.addEventListener("click", () => {
+          row.remove();
+          saveCustomIdeas();
+          saveState();
+          render();
+        });
+
+        row.append(copy, label, removeBtn);
+        bindSwitch(input);
+        return row;
+      }
+
+      function saveCustomIdeas() {
+        const custom = Array.from(listContainer.querySelectorAll(".switch-row.is-custom")).map(
+          (row) => ({
+            id: row.dataset.customId,
+            text: row.querySelector("input").dataset.idea
+          })
+        );
+        writeJSON(CUSTOM_KEY, custom);
+      }
+
+      function addCustomIdea(text) {
+        const clean = text.trim().replace(/\s+/g, " ");
+        if (!clean) {
+          ideaHint.textContent = "Please type an idea first.";
+          ideaHint.classList.add("is-error");
+          return;
+        }
+
+        const exists = getSwitches().some(
+          (item) => item.dataset.idea.toLowerCase() === clean.toLowerCase()
+        );
+        if (exists) {
+          ideaHint.textContent = "That idea is already in the list.";
+          ideaHint.classList.add("is-error");
+          return;
+        }
+
+        const id = `idea-custom-${Date.now()}`;
+        const row = createCustomRow(clean, id);
+        listContainer.appendChild(row);
+
+        const input = row.querySelector("input");
+        input.checked = true;
+
+        ideaHint.textContent = `Added "${clean}". It is switched on already.`;
+        ideaHint.classList.remove("is-error");
+        ideaHint.classList.add("is-success");
+
+        saveCustomIdeas();
+        saveState();
+        render();
+      }
+
+      // Restore custom ideas first, then saved switch states
+      readJSON(CUSTOM_KEY, []).forEach((item) => {
+        if (!item || !item.text) return;
+        listContainer.appendChild(createCustomRow(item.text, item.id));
+      });
+
+      const saved = readJSON(STORAGE_KEY, []);
+      getSwitches().forEach((item) => {
+        if (saved.includes(item.id)) item.checked = true;
+        bindSwitch(item);
+      });
+
+      ideaForm.addEventListener("submit", (event) => {
+        event.preventDefault();
+        addCustomIdea(ideaInput.value);
+        ideaInput.value = "";
+        ideaInput.focus();
+      });
+
+      randomizeBtn.addEventListener("click", () => {
+        const switches = getSwitches();
+        switches.forEach((item) => {
+          item.checked = Math.random() > 0.5;
+        });
+        if (!switches.some((item) => item.checked)) {
+          switches[Math.floor(Math.random() * switches.length)].checked = true;
+        }
+        saveState();
+        render();
+      });
+
+      resetBtn.addEventListener("click", () => {
+        getSwitches().forEach((item) => {
+          item.checked = false;
+        });
+        saveState();
+        render();
+      });
+
+      render();
+    </script>
+  </body>
+</html>

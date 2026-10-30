@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About &amp; Contact | LearnLab</title>
+    <link rel="icon" href="favicon-32x32.png" type="image/png" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header id="site-header"></header>
+
+    <main class="page-shell about-page">
+      <section class="about-hero">
+        <div class="about-copy">
+          <p class="eyebrow">About LearnLab</p>
+          <h1>A small studio for curious builders</h1>
+          <p>
+            LearnLab started as a personal learning project: a place to collect front-end experiments,
+            tiny interactions, and ideas that are easier to understand once they are built. Instead of
+            long theory notes, everything here is a working page you can click, break, and remix.
+          </p>
+
+          <div class="about-stats">
+            <div class="about-stat">
+              <strong>6</strong>
+              <span>interactive pages</span>
+            </div>
+            <div class="about-stat">
+              <strong>100%</strong>
+              <span>plain HTML, CSS, JS</span>
+            </div>
+            <div class="about-stat">
+              <strong>∞</strong>
+              <span>ideas to try next</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="about-visual">
+          <img
+            src="https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=1000&q=80"
+            alt="Two people collaborating on a laptop"
+          />
+        </div>
+      </section>
+
+      <section class="about-values">
+        <div class="section-heading">
+          <p>What guides the work</p>
+          <h2>Principles behind every page</h2>
+        </div>
+
+        <div class="info-grid">
+          <article class="info-card">
+            <div class="icon">🧪</div>
+            <h3>Learn by building</h3>
+            <p>Every concept becomes a small, testable page instead of an abstract note.</p>
+          </article>
+
+          <article class="info-card">
+            <div class="icon">🧭</div>
+            <h3>Clarity first</h3>
+            <p>Clear layout, readable type, and obvious next steps beat crowded screens.</p>
+          </article>
+
+          <article class="info-card">
+            <div class="icon">♿</div>
+            <h3>Accessible by default</h3>
+            <p>Keyboard-friendly controls, readable contrast, and real labels on inputs.</p>
+          </article>
+
+          <article class="info-card">
+            <div class="icon">🔁</div>
+            <h3>Keep iterating</h3>
+            <p>Ship the simple version, collect feedback, then make it one step better.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="about-timeline">
+        <div class="section-heading">
+          <p>Short history</p>
+          <h2>How LearnLab grew</h2>
+        </div>
+
+        <ol class="timeline">
+          <li class="timeline-item">
+            <span class="timeline-dot"></span>
+            <div>
+              <h3>First page</h3>
+              <p>A single index page with a hero section and a couple of cards.</p>
+            </div>
+          </li>
+          <li class="timeline-item">
+            <span class="timeline-dot"></span>
+            <div>
+              <h3>Shared navigation</h3>
+              <p>Navigation was moved into one file so every page stays in sync.</p>
+            </div>
+          </li>
+          <li class="timeline-item">
+            <span class="timeline-dot"></span>
+            <div>
+              <h3>Games and quotes</h3>
+              <p>Added logic practice and a rotating quote panel to keep the site lively.</p>
+            </div>
+          </li>
+          <li class="timeline-item">
+            <span class="timeline-dot"></span>
+            <div>
+              <h3>Idea machine</h3>
+              <p>Switch-based idea builder that turns curiosity into a project blueprint.</p>
+            </div>
+          </li>
+        </ol>
+      </section>
+
+      <section class="contact-panel" id="contact">
+        <div class="contact-copy">
+          <p class="eyebrow">Contact</p>
+          <h2>Let's talk about your idea</h2>
+          <p>
+            Have a question, a suggestion, or a project you want to build together? Send a message and
+            you will get a reply as soon as possible.
+          </p>
+
+          <ul class="contact-list">
+            <li>
+              <span class="contact-icon">✉️</span>
+              <div>
+                <span>Email</span>
+                <a href="mailto:hello@learnlab.dev">hello@learnlab.dev</a>
+              </div>
+            </li>
+            <li>
+              <span class="contact-icon">💬</span>
+              <div>
+                <span>WeChat</span>
+                <strong>learnlab_dev</strong>
+              </div>
+            </li>
+            <li>
+              <span class="contact-icon">🐙</span>
+              <div>
+                <span>GitHub</span>
+                <a href="https://github.com/" target="_blank" rel="noopener">github.com/learnlab</a>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <form class="contact-form" id="contact-form" novalidate>
+          <div class="form-field">
+            <label for="contact-name">Name</label>
+            <input id="contact-name" name="name" type="text" placeholder="Your name" required />
+          </div>
+
+          <div class="form-field">
+            <label for="contact-email">Email</label>
+            <input id="contact-email" name="email" type="email" placeholder="you@example.com" required />
+          </div>
+
+          <div class="form-field">
+            <label for="contact-topic">Topic</label>
+            <select id="contact-topic" name="topic">
+              <option value="general">General question</option>
+              <option value="feedback">Feedback on the site</option>
+              <option value="collab">Collaboration</option>
+              <option value="bug">Something is broken</option>
+            </select>
+          </div>
+
+          <div class="form-field">
+            <label for="contact-message">Message</label>
+            <textarea
+              id="contact-message"
+              name="message"
+              rows="5"
+              placeholder="Tell me what you are working on..."
+              required
+            ></textarea>
+          </div>
+
+          <button class="button primary" type="submit">Send message</button>
+
+          <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
+        </form>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      © 2026 LearnLab · Made with curiosity
+    </footer>
+
+    <script src="nav.js"></script>
+    <script>
+      const form = document.getElementById("contact-form");
+      const status = document.getElementById("form-status");
+
+      if (form) {
+        form.addEventListener("submit", (event) => {
+          event.preventDefault();
+
+          const name = document.getElementById("contact-name").value.trim();
+          const email = document.getElementById("contact-email").value.trim();
+          const message = document.getElementById("contact-message").value.trim();
+          const topic = document.getElementById("contact-topic").value;
+
+          status.classList.remove("is-error", "is-success");
+
+          if (!name || !email || !message) {
+            status.textContent = "Please fill in your name, email, and message.";
+            status.classList.add("is-error");
+            return;
+          }
+
+          const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+          if (!emailPattern.test(email)) {
+            status.textContent = "That email address does not look right. Please check it again.";
+            status.classList.add("is-error");
+            return;
+          }
+
+          status.textContent = `Thanks, ${name}! Your message has been prepared. Opening your mail app...`;
+          status.classList.add("is-success");
+
+          const subject = encodeURIComponent(`[LearnLab] ${topic}`);
+          const body = encodeURIComponent(`${message}\n\n— ${name} (${email})`);
+          window.location.href = `mailto:hello@learnlab.dev?subject=${subject}&body=${body}`;
+
+          form.reset();
+        });
+      }
+    </script>
+  </body>
+</html>
